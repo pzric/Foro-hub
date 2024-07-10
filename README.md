@@ -56,7 +56,9 @@ Base de datos
 
 <img src="img/DB.png" alt="Mensaje de bienvenida" width="400"/>
 
+Detalles del topico
 
+<img src="img/detallesTopico.png" alt="Mensaje de bienvenida" width="400"/>
 
 ## Construido con 🛠️
 * [Java JDK](https://www.oracle.com/br/java/technologies/downloads/) - Java JDK: versión 17
