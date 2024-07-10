@@ -48,9 +48,7 @@ Endpoints disponibles
 
 Documentacion con Swagger
 
-<img src="img/documentacion1.png" alt="Mensaje de bienvenida" width="300"/>
-
-<img src="img/documentacion2.png" alt="Mensaje de bienvenida" width="275"/>
+<img src="img/documentacion1.png" alt="Mensaje de bienvenida" width="300"/> <img src="img/documentacion2.png" alt="Mensaje de bienvenida" width="275"/>
 
 Base de datos
 
