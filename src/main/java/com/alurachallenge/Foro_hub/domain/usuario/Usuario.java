@@ -1,5 +1,6 @@
 package com.alurachallenge.Foro_hub.domain.usuario;
 
+import com.alurachallenge.Foro_hub.domain.respuesta.Respuesta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
