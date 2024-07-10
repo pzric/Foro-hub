@@ -25,17 +25,17 @@ public class TopicoController {
     @PostMapping
     @Transactional
     public ResponseEntity registrarTopico(@RequestBody @Valid DatosTopico datosTopico) {
-        var respuesta = topicoService.registrar(datosTopico);
-        return ResponseEntity.ok(respuesta);
+        var topico = topicoService.registrar(datosTopico);
+        return ResponseEntity.ok(topico);
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosListarTopico>> listarTopico (@PageableDefault(size = 10) Pageable paginacion) {
-        return ResponseEntity.ok(topicoRepository.findAllByOrderByFechaCreacionAsc(paginacion).map(DatosListarTopico::new));
+    public ResponseEntity<Page<DatosListarTopico>> listarTopicos (@PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok(topicoRepository.findAllByOrderByFechaCreacionAsc(pageable).map(DatosListarTopico::new));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DatosDetallesTopico> listarDetallesTopicos(@PathVariable Long id) {
+    public ResponseEntity<DatosDetallesTopico> listarDetallesTopico(@PathVariable Long id) {
         topicoService.validarTopico(id);
         var datosTopico = new DatosDetallesTopico(topicoRepository.getReferenceById(id));
         return ResponseEntity.ok(datosTopico);

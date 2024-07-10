@@ -25,9 +25,9 @@ public class TopicoService {
 
     public DatosListarTopico registrar(DatosTopico datosTopico) {
        iValidadorDeTopicos.forEach(v -> v.validar(datosTopico));
-        var usuario = usuarioRepository.findById(datosTopico.idUsuario()).get();
-        var curso = cursoRepository.findById(datosTopico.idCurso()).get();
-        var topico = new Topico(
+        Usuario usuario = usuarioRepository.findById(datosTopico.idUsuario()).get();
+        Curso curso = cursoRepository.findById(datosTopico.idCurso()).get();
+        Topico topico = new Topico(
                 datosTopico.titulo(),
                 datosTopico.mensaje(),
                 usuario,

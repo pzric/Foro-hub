@@ -1,6 +1,5 @@
 package com.alurachallenge.Foro_hub.domain.usuario;
 
-import com.alurachallenge.Foro_hub.domain.respuesta.Respuesta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -9,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,6 +30,20 @@ public class Usuario implements UserDetails {
     private String contrasena;
     @Enumerated(EnumType.STRING)
     private Rol rol;
+
+    public Usuario(DatosUsuario datosUsuario, PasswordEncoder passwordEncoder) {
+        this.nombre = datosUsuario.nombre();
+        this.correo = datosUsuario.correo();
+        this.contrasena = passwordEncoder.encode(datosUsuario.contrasena());
+        this.rol = datosUsuario.rol();
+    }
+
+    public void actualizarUsuario(ActualizarDatosUsuario actualizarDatosUsuario, PasswordEncoder passwordEncoder) {
+        this.nombre =actualizarDatosUsuario.nombre();
+        this.correo = actualizarDatosUsuario.correo();
+        this.contrasena = passwordEncoder.encode(actualizarDatosUsuario.contrasena());
+        this.rol = actualizarDatosUsuario.rol();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
