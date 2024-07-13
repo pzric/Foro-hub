@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public record DatosListarRespuesta(
         String mensaje,
         Long topico,
-        Long usuario,
-        String solucion,
+        Long idUsuario,
+        Boolean solucion,
         LocalDateTime fechaCreacion) {
 
     public DatosListarRespuesta(Respuesta respuesta) {

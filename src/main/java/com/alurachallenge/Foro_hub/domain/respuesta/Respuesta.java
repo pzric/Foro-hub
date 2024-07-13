@@ -29,13 +29,13 @@ public class Respuesta {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    private String solucion;
+    private Boolean solucion;
 
-    public Respuesta(String mensaje, String solucion,Topico topico, Usuario usuario) {
+    public Respuesta(String mensaje,Topico topico, Usuario usuario) {
         this.mensaje = mensaje;
         this.topico = topico;
         this.usuario = usuario;
-        this.solucion = solucion;
+        this.solucion = false;
         this.fechaCreacion = LocalDateTime.now();
     }
 }

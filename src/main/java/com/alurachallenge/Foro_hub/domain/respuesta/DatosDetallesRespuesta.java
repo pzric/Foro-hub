@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 
 public record DatosDetallesRespuesta(
         String mensaje,
-        String solucion,
+        Boolean solucion,
         LocalDateTime fechaCreacion,
-        Long usuario) {
+        Long idUsuario) {
 
 
     public DatosDetallesRespuesta(Respuesta respuesta) {
