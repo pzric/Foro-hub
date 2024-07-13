@@ -1,14 +1,10 @@
 package com.alurachallenge.Foro_hub.domain.usuario;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
@@ -17,6 +13,7 @@ import java.util.List;
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -38,8 +35,8 @@ public class Usuario implements UserDetails {
         this.rol = datosUsuario.rol();
     }
 
-    public void actualizarUsuario(ActualizarDatosUsuario actualizarDatosUsuario, PasswordEncoder passwordEncoder) {
-        this.nombre =actualizarDatosUsuario.nombre();
+    public void actualizarUsuario(DatosActualizarUsuario actualizarDatosUsuario, PasswordEncoder passwordEncoder) {
+        this.nombre = actualizarDatosUsuario.nombre();
         this.correo = actualizarDatosUsuario.correo();
         this.contrasena = passwordEncoder.encode(actualizarDatosUsuario.contrasena());
         this.rol = actualizarDatosUsuario.rol();
@@ -47,7 +44,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority(getRol().toString()));
     }
 
     @Override

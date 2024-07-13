@@ -3,6 +3,7 @@ package com.alurachallenge.Foro_hub.domain.respuesta;
 import com.alurachallenge.Foro_hub.domain.respuesta.validaciones.IValidadorDeRespuestas;
 import com.alurachallenge.Foro_hub.domain.topico.Topico;
 import com.alurachallenge.Foro_hub.domain.topico.TopicoRepository;
+import com.alurachallenge.Foro_hub.domain.usuario.DatosListarUsuario;
 import com.alurachallenge.Foro_hub.domain.usuario.Usuario;
 import com.alurachallenge.Foro_hub.domain.usuario.UsuarioRepository;
 import com.alurachallenge.Foro_hub.infra.errores.ValidacionDeIntegridad;
@@ -42,7 +43,7 @@ public class RespuestaService {
         }
     }
 
-    public Object actualizar(DatosActualizarRespuesta datosActualizarRespuesta) {
+    public DatosListarRespuesta actualizar(DatosActualizarRespuesta datosActualizarRespuesta) {
         validarRespuesta(datosActualizarRespuesta.id());
         Respuesta respuesta = respuestaRepository.getReferenceById(datosActualizarRespuesta.id());
         respuesta.setMensaje(datosActualizarRespuesta.mensaje());
