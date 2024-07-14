@@ -61,8 +61,7 @@ public class TopicoController {
     @Transactional
     public ResponseEntity eliminarTopico(@PathVariable Long id) {
         topicoService.validarTopico(id);
-        var datosTopico = topicoRepository.getReferenceById(id);
-        topicoRepository.deleteById(datosTopico.getId());
+        topicoRepository.deleteById(topicoRepository.getReferenceById(id).getId());
         return ResponseEntity.noContent().build();
     }
 }

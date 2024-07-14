@@ -24,11 +24,7 @@ public class UsuarioService {
     }
 
     public DatosListarUsuario actualizar(DatosActualizarUsuario datosActualizarUsuario) {
-        validadorDeUsuarios.forEach(v -> v.validar(new DatosUsuario(
-                datosActualizarUsuario.nombre(),
-                datosActualizarUsuario.correo(),
-                datosActualizarUsuario.contrasena(),
-                datosActualizarUsuario.rol())));
+        validadorDeUsuarios.forEach(v -> v.validar(new DatosUsuario(datosActualizarUsuario)));
         var usuario = usuarioRepository.getReferenceById(datosActualizarUsuario.id());
         usuario.actualizarUsuario(datosActualizarUsuario, passwordEncoder);
         return new DatosListarUsuario(usuario);

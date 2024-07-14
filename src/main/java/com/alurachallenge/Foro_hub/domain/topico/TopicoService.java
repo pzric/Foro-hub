@@ -25,13 +25,14 @@ public class TopicoService {
 
     public DatosListarTopico registrar(DatosTopico datosTopico) {
        iValidadorDeTopicos.forEach(v -> v.validar(datosTopico));
-        Usuario usuario = usuarioRepository.findById(datosTopico.idUsuario()).get();
-        Curso curso = cursoRepository.findById(datosTopico.idCurso()).get();
+        Usuario usuario = usuarioRepository.getReferenceById(datosTopico.idUsuario());
+        Curso curso = cursoRepository.getReferenceById(datosTopico.idCurso());
         Topico topico = new Topico(
                 datosTopico.titulo(),
                 datosTopico.mensaje(),
                 usuario,
-                curso);
+                curso
+        );
         topicoRepository.save(topico);
         return new DatosListarTopico(topico);
     }
@@ -44,11 +45,7 @@ public class TopicoService {
 
     public DatosListarTopico actualizar(DatosActualizarTopico datosActualizarTopico) {
         validarTopico(datosActualizarTopico.id());
-        iValidadorDeTopicos.forEach(v -> v.validar(new DatosTopico(
-                datosActualizarTopico.titulo(),
-                datosActualizarTopico.mensaje(),
-                datosActualizarTopico.idUsuario(),
-                datosActualizarTopico.idCurso())));
+        iValidadorDeTopicos.forEach(v -> v.validar(new DatosTopico(datosActualizarTopico)));
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.setTitulo(datosActualizarTopico.titulo());
         topico.setMensaje(datosActualizarTopico.mensaje());

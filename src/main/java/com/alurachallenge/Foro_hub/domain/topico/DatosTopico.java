@@ -8,4 +8,13 @@ public record DatosTopico(
         @NotBlank String mensaje,
         @NotNull Long idUsuario,
         @NotNull Long idCurso) {
+
+    public DatosTopico(DatosActualizarTopico datosActualizarTopico) {
+        this(
+                datosActualizarTopico.titulo(),
+                datosActualizarTopico.mensaje(),
+                datosActualizarTopico.idUsuario(),
+                datosActualizarTopico.idCurso()
+        );
+    }
 }
